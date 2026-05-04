@@ -1,0 +1,15 @@
+{
+  "name": "shark-parkour",
+  "version": "1.0.0",
+  "description": "A small 2D browser platformer made with plain HTML, CSS, JavaScript, and HTML Canvas. No React, Phaser, bundlers, package installs, or external assets are required.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

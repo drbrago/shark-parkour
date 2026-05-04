@@ -1,0 +1,36 @@
+(function () {
+  "use strict";
+
+  var SharkParkour = window.SharkParkour || (window.SharkParkour = {});
+  var CANVAS_WIDTH = 960;
+  var CANVAS_HEIGHT = 540;
+  var GROUND_Y = CANVAS_HEIGHT - 95;
+
+  SharkParkour.Constants = Object.freeze({
+    CANVAS_WIDTH: CANVAS_WIDTH,
+    CANVAS_HEIGHT: CANVAS_HEIGHT,
+    GROUND_Y: GROUND_Y,
+    GROUND_PLATFORM_HEIGHT: CANVAS_HEIGHT - GROUND_Y,
+    TILE_SIZE: 32,
+    FRAME_TIME_LIMIT: 1 / 30,
+
+    PLAYER_WIDTH: 38,
+    PLAYER_HEIGHT: 34,
+    MOVE_SPEED: 260,
+    GROUND_ACCELERATION: 2400,
+    AIR_ACCELERATION: 1700,
+    FRICTION: 1900,
+    GRAVITY: 1800,
+    JUMP_VELOCITY: -650,
+    MAX_FALL_SPEED: 1180,
+    COYOTE_TIME: 0.1,
+    JUMP_BUFFER_TIME: 0.1,
+    JUMP_CUT_MULTIPLIER: 0.46,
+
+    CHECKPOINT_MESSAGE_TIME: 2.2,
+    WIN_MESSAGE_TIME: 999,
+    INTERACTION_RANGE: 70,
+    RESPAWN_INVULNERABLE_TIME: 0.35,
+    EPSILON: 0.001
+  });
+})();

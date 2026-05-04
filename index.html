@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shark Parkour</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <canvas
+        id="game"
+        width="960"
+        height="540"
+        aria-label="Shark Parkour platformer game"
+      ></canvas>
+      <p class="fallback">
+        Shark Parkour uses HTML Canvas. If the game does not appear, enable JavaScript in your browser.
+      </p>
+    </main>
+
+    <script src="src/constants.js"></script>
+    <script src="src/input.js"></script>
+    <script src="src/collision.js"></script>
+    <script src="src/camera.js"></script>
+    <script src="src/level.js"></script>
+    <script src="src/background.js"></script>
+    <script src="src/entities/checkpoint.js"></script>
+    <script src="src/entities/spike.js"></script>
+    <script src="src/entities/goalButton.js"></script>
+    <script src="src/player.js"></script>
+    <script src="src/render.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
