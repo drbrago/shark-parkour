@@ -28,6 +28,7 @@
     ctx.save();
     ctx.translate(-Math.round(camera.x), -Math.round(camera.y));
 
+    game.lava.draw(ctx, camera, game.time);
     drawPlatforms(ctx, game.level.platforms);
 
     for (var i = 0; i < game.spikes.length; i += 1) {
@@ -47,21 +48,38 @@
   function drawPlatforms(ctx, platforms) {
     for (var i = 0; i < platforms.length; i += 1) {
       var p = platforms[i];
-      ctx.fillStyle = "#514657";
-      pixelRect(ctx, p.x, p.y, p.w, p.h);
-      ctx.fillStyle = "#7a7780";
-      pixelRect(ctx, p.x, p.y, p.w, 10);
-      ctx.fillStyle = "#a6a1a4";
-      pixelRect(ctx, p.x, p.y, p.w, 3);
-
-      ctx.fillStyle = "#3c3540";
-      for (var x = p.x + 8; x < p.x + p.w; x += 42) {
-        pixelRect(ctx, x, p.y + 18, 24, 4);
-      }
-      for (var y = p.y + 34; y < p.y + p.h; y += 24) {
-        pixelRect(ctx, p.x, y, p.w, 3);
-      }
+      drawPlatform(ctx, p);
     }
+  }
+
+  function drawPlatform(ctx, platform) {
+    var x = Math.floor(platform.x);
+    var y = Math.floor(platform.y);
+    var width = Math.floor(platform.w);
+    var height = Math.floor(platform.h);
+    var topHeight = Math.min(5, height);
+    var bottomHeight = Math.min(4, height);
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.18)";
+    pixelRect(ctx, x + 2, y + height, width, 4);
+
+    ctx.fillStyle = "#222222";
+    pixelRect(ctx, x, y, width, height);
+
+    ctx.fillStyle = "#8f8a82";
+    pixelRect(ctx, x + 1, y + 1, width - 2, height - 2);
+
+    ctx.fillStyle = "#dedbd2";
+    pixelRect(ctx, x + 1, y + 1, width - 2, topHeight);
+
+    ctx.fillStyle = "#bdb7ad";
+    pixelRect(ctx, x + 1, y + topHeight + 1, width - 2, 3);
+
+    ctx.fillStyle = "#4a4742";
+    pixelRect(ctx, x + 1, y + height - bottomHeight - 1, width - 2, bottomHeight);
+
+    ctx.fillStyle = "#f3f1ea";
+    pixelRect(ctx, x + 2, y + 1, width - 4, 2);
   }
 
   function drawSpike(ctx, spike) {

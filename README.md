@@ -54,14 +54,17 @@ Edit `src/level.js`. The level is plain data:
 - `playerStart`: shark starting position
 - `platforms`: solid rectangles the player can stand on
 - `spikes`: hazard rectangles drawn as pointy spikes
+- `lavaZones`: animated pit hazards that respawn the player on contact
 - `checkpoints`: checkpoint posts that update respawn
 - `goalButton`: final button position and size
 - `killY`: vertical fall line that triggers respawn
 - `width` and `height`: level bounds
 
-Add more platforms or checkpoints by appending objects to the arrays. Keep platform and hazard objects in `{ x, y, w, h }` format.
+Add more platforms or checkpoints by appending objects to the arrays. Platforms and spikes use `{ x, y, w, h }`; lava zones use `{ x, y, width, height }`.
 
 Ground-level platforms use `GROUND_Y` from `src/constants.js` so their top surface stays aligned with the decorative street background. Keep pits as gaps between ground platform segments rather than adding collision to the background image.
+
+Add lava to a pit by appending a `{ x, y, width, height }` object to `lavaZones` in `src/level.js`. Lava is hazardous, smoke is decorative only, and falling below `killY` still respawns as a fallback.
 
 ## Editing The Background
 
@@ -83,6 +86,7 @@ To replace a layer, put a new PNG at the same path or update that layer's `src` 
 - Player can jump
 - Player collides with platforms
 - Player dies in pits
+- Player dies on lava
 - Player dies on spikes
 - Checkpoints update respawn
 - `R` respawns at checkpoint

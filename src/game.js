@@ -26,6 +26,7 @@
         return new SharkParkour.Checkpoint(data, index);
       });
       this.goalButton = new SharkParkour.GoalButton(this.level.goalButton);
+      this.lava = new SharkParkour.LavaSystem(this.level.lavaZones);
       this.respawnPoint = {
         x: this.level.playerStart.x,
         y: this.level.playerStart.y
@@ -58,6 +59,8 @@
       if (this.messageTimer > 0) {
         this.messageTimer -= dt;
       }
+
+      this.lava.update(dt);
 
       if (this.input.wasPressed("restart")) {
         this.respawn("Back to checkpoint");
@@ -118,6 +121,11 @@
           return;
         }
       }
+
+      if (this.lava.collidesWith(playerBounds)) {
+        this.respawn("Too hot! Back to checkpoint");
+        return;
+      }
     }
 
     checkGoal() {
@@ -157,6 +165,7 @@
       playerStart: clonePoint(level.playerStart),
       platforms: level.platforms.map(cloneRect),
       spikes: level.spikes.map(cloneRect),
+      lavaZones: (level.lavaZones || []).map(cloneZone),
       checkpoints: level.checkpoints.map(clonePoint),
       goalButton: cloneRect(level.goalButton)
     };
@@ -175,6 +184,15 @@
     return {
       x: point.x,
       y: point.y
+    };
+  }
+
+  function cloneZone(zone) {
+    return {
+      x: zone.x,
+      y: zone.y,
+      width: zone.width,
+      height: zone.height
     };
   }
 

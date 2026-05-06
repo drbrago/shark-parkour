@@ -6,6 +6,8 @@
   var OLD_GROUND_Y = 456;
   var GROUND_Y = C.GROUND_Y;
   var GROUND_SHIFT = GROUND_Y - OLD_GROUND_Y;
+  var LAVA_Y = C.CANVAS_HEIGHT - 44;
+  var LAVA_HEIGHT = 64;
 
   function groundPlatform(x, width) {
     return {
@@ -31,6 +33,15 @@
       y: GROUND_Y - height,
       w: width,
       h: height
+    };
+  }
+
+  function lavaZone(x, width) {
+    return {
+      x: x + 4,
+      y: LAVA_Y,
+      width: width - 8,
+      height: LAVA_HEIGHT
     };
   }
 
@@ -71,6 +82,15 @@
       groundSpike(3190, 32, 26),
       groundSpike(3525, 32, 26),
       groundSpike(3562, 32, 26)
+    ],
+    lavaZones: [
+      lavaZone(470, 65),
+      lavaZone(965, 75),
+      lavaZone(1360, 75),
+      lavaZone(1955, 60),
+      lavaZone(2380, 68),
+      lavaZone(2833, 95),
+      lavaZone(3348, 62)
     ],
     checkpoints: [
       { x: 745, y: GROUND_Y },
